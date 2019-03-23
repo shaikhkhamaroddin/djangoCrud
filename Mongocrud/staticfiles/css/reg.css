@@ -1,0 +1,31 @@
+    body{ background-image:url('../images/backg.jpg'); background-repeat:no-repeat; background-position:center; background-size:cover; padding:10px;}
+
+
+
+*[role="form"] {
+    max-width: 530px;
+    padding: 15px;
+    margin: 0 auto;
+    border-radius: 0.3em;
+    background-color: #f2f2f2;
+}
+
+*[role="form"] h2 { 
+    font-family: 'Open Sans' , sans-serif;
+    font-size: 40px;
+    font-weight: 600;
+    color: #000000;
+    margin-top: 5%;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+.btn.btn-primary {
+  font-size: 14px;
+  width: 140px;
+  height: 50px;
+  line-height: 50px;
+  padding: 0;
+  margin-left: 60px;
+}

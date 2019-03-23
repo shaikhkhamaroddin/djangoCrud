@@ -1,0 +1,92 @@
+<!Doctype html>
+<head>
+        {% load static %}
+        
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" id="bootstrap-css">
+        <style>
+                .thead-inverse th {
+            color: #fff;
+            background-color: #373a3c;
+        }
+        .fit-content{
+              width:1%;
+    white-space:nowrap;
+        }
+        </style>
+</head>
+<body id='RegForm'>
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-md- col-md-offset-2" style="font-size: 40px">MONGO DB CRUD <sub style="font-size: 10px">APP HOMEPAGE</sub></div>
+    </div>
+        <div class="row justify-content-md-center">
+        <div class="col-sm-offset-4 col-sm-4" style="font-size:25px;color: #FF7A80;text-transform: uppercase;">Welcome {{request.session.username}}</div>
+        <a class='btn btn-danger col-md-offset-2' id="logout"   href="{% url 'logout' %}">Logout</a>
+    </div>
+        </div>
+
+        <div class="container" style="margin-top:5%">
+            <div class="row justify-content-md-center">
+                <div class="col-sm-2">
+                        <button class='btn btn-primary' onclick="location.href={% url 'signup' %}">Create New</button>
+                </div>
+
+                <div>
+                        <form class="form-inline" id='searchform' action='{% url 'home' %}' method='post'>
+                                        <input type="text" class="col-sm-2" name="searchText">
+                                        <button class="btn btn-primary col-sm-1"  name="search" id="search" type='submit' style="margin-left: 1%;">Search</button>
+                                </form>
+                </div>
+        </div>
+    </div>
+
+        <!-- ./container -->
+     <div class="container">
+        <div class="row justify-content-md-center">
+            
+                <table id="std" class="table" style="width:100%;margin-top:2%">
+                   <thead class="thead-inverse">
+                        <tr>
+                        <th>Sr.No.</th> 
+                          <th>Firstname</th>
+                          <th>Lastname</th> 
+                          <th>Gender</th>
+                          <th colspan=2 style="text-align: center;">Action</th>
+                          
+                        </tr>
+                </thead>
+                        {% if records%}
+                      
+                            {% for r in records%}
+                               
+                        <tr>
+                            <th>{{ forloop.counter }}</th> 
+                          <td>{{r.firstname}}</td>
+                          <td>{{r.lastname}}</td> 
+                          <td>{{r.gender}}</td>
+                          <td class="fit-content"><a class="btn btn-success" href="{% url 'updatepg' r.empid %}">Update</a></td>
+                            <td class="fit-content"><button class='btn btn-danger' id="{{r.empid}}"  onclick='recdelete(this,"{% url 'delete' r.empid %}");'>Delete</button></td>
+                        </tr>
+                               
+                            {% endfor %}
+                        {% endif %}
+                      </table>
+            </div>
+        </div> 
+
+
+        <script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script>
+        function recdelete(elem,url){
+                a = confirm('Do you want to delete?');
+                if (a == true){
+                        location.href=url;
+                        return true
+                }
+                return false
+
+        }
+</script>
+        </body>
+    </html>

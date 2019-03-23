@@ -1,0 +1,26 @@
+<html>
+<head>
+
+<!------ Include the above in your HEAD tag ---------->
+
+</head>
+<body id='RegForm'>
+<div class="container">
+<h1>Record View</h1>
+        Details added successfully<br><br><br>
+         Firstname :  {{firstname}} <br>
+         Lastname : {{lastname}}<br>
+         Gender : {{gender}}<br>
+            
+        </div> <!-- ./container -->
+        {% if record%}
+        {% for r in record%}
+        
+            {{r.sequence_value}}
+      
+    
+        {% endfor %}
+    {% endif %}
+
+        </body>
+    </html>

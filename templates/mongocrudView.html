@@ -1,0 +1,95 @@
+<html>
+<head>
+
+        {% load static %}
+        
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" id="bootstrap-css">
+<style>
+html,body{height:100%;margin:0;padding:0;}
+
+.board-container{background-color:#bef1db;padding:40px;box-sizing:border-box;margin: 100px}
+</style>
+</head>
+
+<body id='RegForm'>
+<div class="container">
+<div class="board-container">
+            <form class="form-horizontal" role="form" method="POST" action="{% url posturl %}" enctype="multipart/form-data">
+                                                                            <div class='col-sm-4'></div>
+                <div class='col-sm-8'>
+                    <br>
+                    <h2>{{heading}}</h2></br>
+                </div>
+         <input type="hidden" id="id" name="id" value={{id}}>
+                <div class="form-group">
+                    <label for="firstName" class="col-sm-3 control-label">First Name</label>
+                    <div class="col-sm-4 " style="color:lightred">
+                        {%with firstname=firstname|yesno:'firstname,spc' %}
+                        {%endwith%}
+                        {%with lastname=lastname|yesno:'lastname,spc' %}
+                        {%endwith%}
+                        <input type="text" id="firstName" name="firstname" placeholder="First Name" class="form-control" value={{firstname}} >
+                    </div>
+                    
+                </div>
+                <div class="form-group">
+                    <label for="lastName" class="col-sm-3 control-label">Last Name</label>
+                    <div class="col-sm-4">
+                        <input type="text" id="lastName" placeholder="Last Name" name="lastname" class="form-control" value={{lastname}} >
+                    </div>
+                </div>
+                          
+                   <div class="form-group">
+                    <label for="username" class="col-sm-3 control-label">Username</label>
+                    <div class="col-sm-4">
+                        <input type="text" id="username" placeholder="username" name="username" class="form-control" >
+                    </div>
+                </div>
+                      <div class="form-group">
+                    <label for="password" class="col-sm-3 control-label">Password</label>
+                    <div class="col-sm-4">
+                        <input type="password" id="password" placeholder="password" name="password" class="form-control"  >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-3">Gender</label>
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label class="radio-inline">
+                                    <input type="radio" id="male" name="gender" value="Female" required 
+                                    {% if gender == 'Female' %}
+                                    checked
+                                    {% endif %} > Female
+                                    
+                                </label>
+                            </div>
+                            <div class="col-sm-3">
+                                <label class="radio-inline">
+                                    <input type="radio" id="male" name="gender" value="Male"
+                                    {% if gender == 'Male'%}
+                                        checked
+                                    {% endif %}> Male
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- /.form-group -->
+                <div class="col-sm-offset-3"><input class="file" type="file" id='fileupload' name="fileupload"></div>
+                <br>
+                <label class="control-label col-sm-3" ></label>
+                <div class="form-group col-sm-6" style="margin-left: -3.4px">
+                <input type="submit" class="btn btn-primary col-sm-3" value="{{ id|yesno:'Update,Register' }}">
+                <label class="control-label col-sm-1" ></label>
+                <button type="button" class="btn btn-primary col-sm-2" onclick="location.href='/'" style="">Back</button>
+                </div>
+            </form> <!-- /form -->
+           
+      </div>      
+        </div> <!-- ./container -->
+     
+        <script src="{% static 'js/jquery.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        </body>
+    </html>
